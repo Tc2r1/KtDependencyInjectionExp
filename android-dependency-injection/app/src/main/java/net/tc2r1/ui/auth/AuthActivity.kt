@@ -20,6 +20,5 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-//        appContainer.authContainer = null
     }
 }
