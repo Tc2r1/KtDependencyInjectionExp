@@ -2,15 +2,18 @@ package net.tc2r1.ui.auth
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import net.tc2r1.MyApplication
+import dagger.android.AndroidInjection
 import net.tc2r1.R
-import net.tc2r1.di.AppContainer
-import net.tc2r1.di.AuthContainer
+import javax.inject.Inject
 
 class AuthActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
     }

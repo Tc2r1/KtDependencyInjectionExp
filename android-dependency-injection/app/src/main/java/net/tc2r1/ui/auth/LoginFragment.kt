@@ -1,10 +1,12 @@
 package net.tc2r1.ui.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import net.tc2r1.R
 import net.tc2r1.data.network.Resource
@@ -14,11 +16,19 @@ import net.tc2r1.ui.handleApiError
 import net.tc2r1.ui.home.HomeActivity
 import net.tc2r1.ui.startNewActivity
 import net.tc2r1.ui.visible
+import javax.inject.Inject
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding: FragmentLoginBinding
-    private var viewModel: AuthViewModel? = null
+
+    @Inject
+    lateinit var viewModel: AuthViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
